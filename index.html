@@ -191,9 +191,9 @@
                 if (xhr.readyState == 4 && xhr.status == 200) {//readyState表示文档加载进度,4表示完毕
                     //alert(xhr)
                     console.log('==>', isSupport(), xhr.getAllResponseHeaders());//responseText属性用来取得返回的文本
-                }else {
+                } else {
 
-                    aa();
+                    index % 2 ? function () { throw new Error('custom') } : aa();
                 }
             }
         }
