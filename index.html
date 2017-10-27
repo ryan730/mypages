@@ -106,6 +106,34 @@
 <body>
 <!-- <script src='./rich_apm.min.js'></script> -->
 <script src='./tingyun-rum.js'></script>
+<script>
+    var xhr = new XMLHttpRequest();
+    var types=['Get','POST','HEAD'];
+    var index = 0;
+    var params = "lorem=ipsum&name=binny";
+    function requestURL(){
+        var url =location.href+'?r='+Math.random();
+        var params = "lorem=ipsum&name=binny";
+        var i = (index++)%3
+        xhr.open(types[i],url,true);
+        xhr.onreadystatechange = callback;//在readystatechange事件上绑定一个函数
+        //当接收到数据时,会调用readystatechange事件上的事件处理函数
+        xhr.send(params);
+        function callback() {
+            //在这里面没有使用this.readyState这是因为IE下面ActiveXObject的特殊性
+            if (xhr.readyState == 4) {//readyState表示文档加载进度,4表示完毕
+                //alert(xhr)
+                console.log('==>',xhr.getAllResponseHeaders());//responseText属性用来取得返回的文本
+            }
+        }
+    }
+    
+    requestURL();
+    setInterval(function(){
+        requestURL()
+    },60000);
+
+</script>
 <div id="container">
     <div class="module">
         <h1>1&nbsp;valkyrie</h1>
